@@ -1,4 +1,4 @@
-package Loot
+package POSSystem
 {
 import flash.display.Sprite;
 import flash.display.StageAlign;
