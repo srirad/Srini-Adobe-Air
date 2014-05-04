@@ -10,36 +10,48 @@ package Loot
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	
-//
 	public class Main extends Sprite
 	{
-		
 		public static var mStarling:Starling;
 		public var bitmapData:BitmapData;
 		public var bmVis:Bitmap;
 		
-		public function Main()
+		[Embed(source="C:/Development/projects/citrus-hello/src/Loot/Assets/Images/mainpage/landing_bg(03).jpg")]
+		internal var MyImage:Class;
+		var myBitmap:Bitmap = new MyImage;
+		
+	
+		
+		public function Main() extends Sprite
 		{
-			
-			var loader:Loader = new Loader();
+			/*var length:int = myBitmap.getBounds.length;
+			myBitmap.scaleX = 0.2;
+			*/
+			addChild(myBitmap);
+		/*	var loader:Loader = new Loader();
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onComplete);
-			loader.load(new URLRequest("../../src/Loot/Assets/Images/mainpage/banner01.jpg"));
+			loader.load(new URLRequest("banner01.jpg")); 
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			mStarling = new Starling(BackDrop, stage);
 			
 			mStarling.antiAliasing = 1;
 			
-			mStarling.start();
+		mStarling.start();
+				addEventListener(Event.ADDED_TO_STAGE, onAdded); */
 		
 		}
 		
 		function onComplete(event:Event):void
 		{
-			trace("loaded!");
+		/*	trace("loaded!");
 			bitmapData = event.target.content.bitmapData;
 			bmVis = new Bitmap(bitmapData);
-			this.addChild(bmVis);
+			this.addChild(bmVis); */
+		}
+		
+		private function onAdded(e:Event):void
+		{
 		}
 		
 		public function removeLoadingScreen():void
