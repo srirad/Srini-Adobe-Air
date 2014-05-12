@@ -16,13 +16,14 @@ package Loot
 	 * @author Srini
 	 */
 	public class BackDrop extends Sprite
-	{	
+	{
 		private var loginImg:Image;
 		private var mainPage:MainPage;
 		
 		[Embed(source="Assets/Images/mainpage/landing2.jpg")]
 		private static const LogIn:Class;
-		private var commonAPI:CommonAPI  = new CommonAPI();
+		private var commonAPI:CommonAPI = new CommonAPI();
+		
 		public function BackDrop()
 		{
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
@@ -35,13 +36,16 @@ package Loot
 			var bgTexture:Texture = Texture.fromBitmap(loginBg);
 			loginImg = new Image(bgTexture);
 			
-			loginImg.width = stage.stageWidth;
-			loginImg.height = stage.stageHeight;
-			
-			commonAPI.changeImageWidth(loginImg);
-			
+			commonAPI.resizeImageW(loginImg);
+			loginImg.y = loginImg.y + commonAPI.getTopLeft();
+			trace()
 			addChild(loginImg);
 			loginImg.addEventListener(TouchEvent.TOUCH, loginBtnClicked);
+		}
+		
+		public function getCommonAPI():CommonAPI
+		{
+			return commonAPI;
 		}
 		
 		private function loginBtnClicked(e:TouchEvent):void
@@ -52,8 +56,9 @@ package Loot
 			
 			if (touch.phase == TouchPhase.ENDED)
 			{
+				clicked.removeFromParent();
 				clicked.dispose();
-				mainPage = new MainPage();
+				mainPage = new MainPage(this);
 				addChild(mainPage);
 			}
 		}

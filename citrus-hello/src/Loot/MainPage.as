@@ -4,6 +4,10 @@ package Loot
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.TouchEvent;
+	import flash.display.Bitmap;
+	import starling.display.DisplayObject;
+	import starling.display.Image;
+	import starling.textures.Texture;
 	
 	/**
 	 * ...
@@ -12,20 +16,38 @@ package Loot
 	public class MainPage extends Sprite
 	{
 		private var q:Quad;
+		private var commonAPI:CommonAPI;
 		
-		public function MainPage()
+		[Embed(source="Assets/Images/mainpage/banner01.jpg")]
+		private static const BannerImg:Class;
+		[Embed(source="Assets/Images/mainpage/explore_btn.jpg")]
+		private static const ExploreBtn:Class;
+		private var bannerImg:Image;
+		private var exploreBtn:Image;
+		private var lootBtn:Image;
+		[Embed(source = "Assets/Images/mainpage/loot_btn.jpg")]
+		private static const LootBtn:Class;
+		public function MainPage(backDrp:BackDrop)
 		{
-				addEventListener(Event.ADDED_TO_STAGE, onAdded);
+			addEventListener(Event.ADDED_TO_STAGE, onAdded);
+			commonAPI = backDrp.getCommonAPI();
 		}
 		
 		private function onAdded(e:Event):void
 		{
-			q = new Quad(stage.stageWidth, stage.stageHeight);
-			q.setVertexColor(0, 0x000000);
-			q.setVertexColor(1, 0xAA0000);
-			q.setVertexColor(2, 0x00FF00);
-			q.setVertexColor(3, 0x0000FF);
-			addChild(q); 
+					
+			bannerImg =  commonAPI.getImage(BannerImg);
+			
+			exploreBtn = commonAPI.getImage(ExploreBtn);
+			exploreBtn.y = bannerImg.y +bannerImg.height;
+		
+			lootBtn = commonAPI.getImage(LootBtn);
+			lootBtn.y = bannerImg.y +bannerImg.height;
+			lootBtn.x = exploreBtn.x +exploreBtn.width;
+			
+			addChild(bannerImg);
+			addChild(exploreBtn);
+			addChild(lootBtn);
 		}
 	
 	}

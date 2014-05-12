@@ -12,7 +12,7 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
-	var entity : IEntity = PBE.allocateEntity();
+	
 	import flash.utils.getDefinitionByName;
 	
 	public class Game extends Sprite
