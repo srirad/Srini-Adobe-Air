@@ -53,7 +53,7 @@ package POSSystem
 			if (touch.phase == TouchPhase.ENDED)
 			{
 				clicked.dispose();
-			//	clicked.removeEventListeners();
+				clicked.removeEventListeners();
 				mainPage = new MainPage();
 				addChild(mainPage);
 			}

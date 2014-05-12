@@ -4,16 +4,15 @@ call bat\SetupSDK.bat
 call bat\SetupApplication.bat
 
 :target
-goto desktop
+::goto desktop
 ::goto android-debug
-::goto android-test
+goto android-test
 set INTERPRETER=-interpreter
 ::goto ios-debug
 ::goto ios-test
 
 :desktop
  http://help.adobe.com/en_US/air/build/WSfffb011ac560372f-6fa6d7e0128cca93d31-8000.html
-
 ::set SCREEN_SIZE=NexusOne
 ::set SCREEN_SIZE=iPhoneRetina
 
@@ -26,7 +25,6 @@ echo.
 adl -screensize 720 "%APP_XML%" "%APP_DIR%"
 if errorlevel 1 goto end
 goto end
-
 
 :ios-debug
 echo.
